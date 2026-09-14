@@ -1,0 +1,193 @@
+/* ==========================================================
+   デザイントークン(配色ルール: ベース70% / メイン25% / アクセント5%)
+   色を変えたい場合はここだけ書き換えれば全画面に反映されます
+   ========================================================== */
+:root {
+  --color-base: #F1F3F0;       /* ベースカラー: 背景全体 */
+  --color-surface: #FFFFFF;    /* カード・入力欄などの面 */
+  --color-main: #2C2F2B;       /* メインカラー: 文字・枠線・構造 */
+  --color-accent: #2F6F4E;     /* アクセントカラー: 選択状態・実行ボタン */
+  --color-accent-text: #FFFFFF;
+
+  /* メインカラーの濃淡違い(枠線・補助テキストなどに使用) */
+  --main-08: rgba(44, 47, 43, 0.08);
+  --main-15: rgba(44, 47, 43, 0.15);
+  --main-25: rgba(44, 47, 43, 0.25);
+  --main-40: rgba(44, 47, 43, 0.4);
+  --main-60: rgba(44, 47, 43, 0.6);
+  --main-70: rgba(44, 47, 43, 0.7);
+
+  /* diffのみの例外色(追加=緑/削除=赤という一般的な慣習に合わせる) */
+  --diff-add-bg: rgba(47, 111, 78, 0.12);
+  --diff-add-text: #204F38;
+  --diff-remove-bg: rgba(178, 54, 43, 0.12);
+  --diff-remove-text: #7A241A;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --font-sans: "Hiragino Sans", "Yu Gothic UI", "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Consolas", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-base);
+  color: var(--color-main);
+  font-family: var(--font-sans);
+}
+
+/* 画面切り替え用: is-active が付いた画面だけ表示する */
+.view {
+  display: none;
+  padding: 28px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.view.is-active {
+  display: block;
+}
+
+/* ==========================================================
+   共通パーツ
+   ========================================================== */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-main);
+  opacity: 0.7;
+  font-size: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.btn {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--main-25);
+  background: transparent;
+  color: var(--color-main);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--main-08);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  border: none;
+}
+
+.btn-accent:hover {
+  opacity: 0.92;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--main-25);
+  color: var(--color-main);
+}
+
+.field-label {
+  font-size: 12px;
+  color: var(--main-70);
+  margin-bottom: 8px;
+}
+
+/* ==========================================================
+   作成画面: フォルダD&D欄
+   ========================================================== */
+
+.drop-zone {
+  border: 2px dashed var(--main-25);
+  border-radius: var(--radius-lg);
+  padding: 40px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  background: var(--main-08);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+/* ドラッグ中に付与するクラス。JS側でこのクラスの付け外しを行う */
+.drop-zone.is-dragover {
+  background: rgba(47, 111, 78, 0.08);
+  border-color: var(--color-accent);
+}
+
+/* ==========================================================
+   作成画面: タグボタン(排他選択・独立トグル共通の見た目)
+   ========================================================== */
+
+.tag-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.tag-btn {
+  flex: 1;
+  min-width: 90px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--main-25);
+  background: transparent;
+  color: var(--color-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tag-btn:hover {
+  background: var(--main-08);
+}
+
+/* 選択済み状態。排他選択・独立トグルどちらもこのクラスで統一表現する */
+.tag-btn.is-selected {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  border-color: var(--color-accent);
+}
+
+/* ==========================================================
+   作成画面: 詳細記入欄
+   ========================================================== */
+
+.detail-textarea {
+  width: 100%;
+  min-height: 160px;
+  background: var(--color-surface);
+  border: 1px solid var(--main-15);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  color: var(--color-main);
+  resize: vertical;
+  margin-bottom: 22px;
+}

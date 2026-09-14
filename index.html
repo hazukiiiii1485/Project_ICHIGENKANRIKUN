@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>プロジェクト一元管理くん</title>
+<link rel="stylesheet" href="style.css">
+<!-- アイコン表示用。オフライン運用時はこのCDN読み込みをローカルの
+     Tabler Icons フォントファイル参照に差し替えてください -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+</head>
+<body>
+
+<!-- ============================================
+     ホーム画面
+     ============================================ -->
+<section id="view-home" class="view is-active">
+
+  <div style="text-align:center; margin-bottom:28px;">
+    <h1 style="font-size:26px; font-weight:500; margin:0;">プロジェクト一元管理くん</h1>
+  </div>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+    <span id="project-count" style="font-size:13px; color:var(--main-70);">保存プロジェクト(全0件)</span>
+    <button class="btn btn-accent" onclick="goToCreateScreen()">+ 新規プロジェクト</button>
+  </div>
+
+  <div id="project-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
+    <!-- ここにプロジェクトカードがJSで挿入されます -->
+  </div>
+
+</section>
+
+<!-- ============================================
+     プロジェクト作成画面(次のステップで実装)
+     ============================================ -->
+<section id="view-create" class="view">
+
+  <button class="back-link" onclick="goToHomeScreen()">
+    <i class="ti ti-arrow-left" aria-hidden="true"></i> 一覧へ戻る
+  </button>
+
+  <!-- ①フォルダD&D欄 -->
+  <div id="drop-zone" class="drop-zone">
+    <i class="ti ti-folder-plus" style="font-size:32px;" aria-hidden="true"></i>
+    <div style="font-size:14px; font-weight:500; margin-top:10px;">プロジェクトフォルダをここにドラッグ&ドロップ</div>
+    <div style="font-size:12px; color:var(--main-60); margin-top:4px;">またはクリックしてフォルダを選択</div>
+  </div>
+  <div id="drop-zone-path" style="font-family:var(--font-mono); font-size:12px; color:var(--main-60); margin-top:8px;"></div>
+
+  <!-- ②カテゴリタグ(排他選択) -->
+  <div class="field-label">カテゴリ</div>
+  <div class="tag-group" id="category-group" data-mode="exclusive">
+    <button type="button" class="tag-btn" data-value="personal">
+      <i class="ti ti-user" aria-hidden="true"></i> 個人用
+    </button>
+    <button type="button" class="tag-btn" data-value="business">
+      <i class="ti ti-briefcase" aria-hidden="true"></i> 業務用
+    </button>
+  </div>
+
+  <!-- ③形式タグ(デスクトップ/Web/モバイルは排他、自社システムは独立トグル) -->
+  <div class="field-label">アプリ形式</div>
+  <div class="tag-group" id="platform-group" data-mode="exclusive">
+    <button type="button" class="tag-btn" data-value="desktop">
+      <i class="ti ti-device-desktop" aria-hidden="true"></i> デスクトップ
+    </button>
+    <button type="button" class="tag-btn" data-value="web">
+      <i class="ti ti-world" aria-hidden="true"></i> Web
+    </button>
+    <button type="button" class="tag-btn" data-value="mobile">
+      <i class="ti ti-device-mobile" aria-hidden="true"></i> モバイル
+    </button>
+    <button type="button" class="tag-btn" id="internal-toggle" data-mode="toggle">
+      <i class="ti ti-building" aria-hidden="true"></i> 自社システム
+    </button>
+  </div>
+
+  <!-- ④詳細記入欄 -->
+  <div class="field-label">プロジェクト詳細</div>
+  <textarea id="project-detail" class="detail-textarea" placeholder="機能や利用目的などを自由に記入"></textarea>
+
+  <!-- ⑤作成ボタン -->
+  <button class="btn btn-accent" style="width:100%; padding:13px; font-size:14px; font-weight:500;" onclick="onCreateProjectClick()">
+    プロジェクトを作成
+  </button>
+
+</section>
+
+<!-- ============================================
+     プロジェクト詳細画面(今後実装)
+     ============================================ -->
+<section id="view-detail" class="view">
+  <!-- TODO -->
+</section>
+
+<!-- ============================================
+     変更履歴・差分画面(今後実装)
+     ============================================ -->
+<section id="view-history" class="view">
+  <!-- TODO -->
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
