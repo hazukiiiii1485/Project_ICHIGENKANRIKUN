@@ -35,16 +35,7 @@ function fetchProjectsFromBackend() {
       platform: "desktop",        // "desktop" | "web" | "mobile"
       isInternalSystem: true,
       updatedAt: "09/10更新"
-    },
-    {
-      id: "proj_002",
-      name: "案件進捗ダッシュボード",
-      description: "受託案件の進捗を取引先と共有",
-      category: "business",
-      platform: "web",
-      isInternalSystem: false,
-      updatedAt: "09/05更新"
-    }
+    },    
   ]);
   // ---- ここまで仮データ ----
 }
