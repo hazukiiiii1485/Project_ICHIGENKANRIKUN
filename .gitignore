@@ -1,0 +1,5 @@
+build/
+out/
+*.obj
+*.exe
+projects.json
