@@ -191,3 +191,176 @@ body {
   resize: vertical;
   margin-bottom: 22px;
 }
+
+/* ==========================================================
+   詳細画面: 構成ファイル一覧
+   ========================================================== */
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--main-15);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-surface);
+  padding: 10px 12px;
+}
+
+.file-row .file-name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.file-row .file-name:hover {
+  text-decoration: underline;
+}
+
+.file-row .file-action {
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.file-row .file-action:hover {
+  opacity: 1;
+}
+
+/* ==========================================================
+   詳細画面: プレビュー
+   ========================================================== */
+
+.preview-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.preview-tab {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--color-main);
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.preview-tab:hover {
+  opacity: 0.85;
+}
+
+.preview-tab.is-selected {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  opacity: 1;
+}
+
+.preview-box {
+  background: var(--color-surface);
+  border: 1px solid var(--main-15);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-main);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* ==========================================================
+   履歴画面: バージョン一覧
+   ========================================================== */
+
+.history-list {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--main-15);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.history-item {
+  background: var(--color-surface);
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--color-main);
+}
+
+.history-item:hover {
+  background: var(--main-08);
+}
+
+.history-item.is-selected {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+/* history-item.is-selected の場合、内側のテキストも白系に */
+.history-item.is-selected .history-time {
+  color: var(--color-accent-text);
+  opacity: 0.85;
+}
+
+.history-time {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--main-60);
+  margin-top: 2px;
+}
+
+/* ==========================================================
+   履歴画面: 差分表示
+   ========================================================== */
+
+.diff-view {
+  background: var(--color-surface);
+  border: 1px solid var(--main-15);
+  border-radius: var(--radius-md);
+  padding: 4px 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  min-height: 80px;
+}
+
+.diff-line {
+  padding: 0 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.diff-line.add {
+  background: var(--diff-add-bg);
+  color: var(--diff-add-text);
+}
+
+.diff-line.remove {
+  background: var(--diff-remove-bg);
+  color: var(--diff-remove-text);
+}
+
+#restore-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+#restore-btn:disabled:hover {
+  background: transparent;
+}
